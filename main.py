@@ -239,6 +239,6 @@ class DialogBot(object):
                 self.send_message(f"{name[0][0]}, чем я могу помочь?", id, 2)
         con.commit()
 
-
+print("Start")
 dialoger = DialogBot('5317596411:AAHKWtmVCEYg0Gu8LMCL3JNLcZPtefPBbMI')
 dialoger.on()
