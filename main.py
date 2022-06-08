@@ -21,7 +21,7 @@ group = VkParser('2115f1962115f1962115f1966b21699d48221152115f19643788347c0b366e
 
 message_plast = "Собирать и сдавать на переработку следует пластики с маркировкрой PET (1), HDPE (2), LDPE (4), ПП (PP, 5). Однако не весь пластик можно переработать. Изделия с маркировками PVC (3), O (7) и ABS в основном не перерабатываются, поэтому их лучше покупать. Но если уже купили, сдайте вместе с остальным пластиком.\n\nДля того, чтобы правильно сдать пластик на переработку нужно:\n   1. Очистить его от остатков еды или другого содержимого.\n  2. Полимерные отходы следует сплющить или смять, чтобы они занимали меньше места и дома, и в кузове мусоровоза.\n   3. Разобрать на составные части - открыть крышки, снять этикетки и так далее. Но делать это не обязательно."
 
-def get_random_id():
+def get_random_id(id):
     data = list(cur.execute(''f'SELECT unid FROM users WHERE id={id}'''))
     while len(data) != 0:
         letters_and_digits = string.ascii_letters + string.digits
@@ -126,7 +126,7 @@ class DialogBot(object):
                 id)
             cur.execute(''f'INSERT INTO users (id, stade) VALUES ({id}, 1)''')
         elif stade[0][0] == 1:
-            cur.execute(''f'UPDATE users SET username="{update.message.text.rstrip(".!").split()[0].capitalize()}", stade=2, unid="{get_random_id()}" WHERE id={id}''')
+            cur.execute(''f'UPDATE users SET username="{update.message.text.rstrip(".!").split()[0].capitalize()}", stade=2, unid="{get_random_id(id)}" WHERE id={id}''')
             self.send_message(f"Приятно познакомиться, {update.message.text.rstrip('.!').split()[0].capitalize()}. Ты ведь живёшь в Тюменской области (Тюмень, ХМАО, ЯНАО)?", id)
         elif stade[0][0] == 2:
             if 'да' in text:
