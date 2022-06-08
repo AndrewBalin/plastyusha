@@ -4,7 +4,6 @@ from time import sleep
 import random
 import string
 
-
 from VKparser import VkParser
 
 import sqlite3
